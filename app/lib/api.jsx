@@ -25,12 +25,34 @@ const GET_CATEGORIES = `
             }
       }
   }`;
+const GET_ARTICLES = `
+  query{
+      allArticles {
+          id
+          title
+          description
+          main_image { 
+              filename
+            }
+      }
+  }`;
 
 const fetchStuff = (gqlQuery) => graphql(gqlQuery);
 
 export const useCategories = () => {
   const { isLoading, data, error } = useQuery("categories", () =>
     fetchStuff(GET_CATEGORIES)
+  );
+
+  return {
+    isLoading,
+    data,
+    error,
+  };
+};
+export const useArticles = () => {
+  const { isLoading, data, error } = useQuery("articles", () =>
+    fetchStuff(GET_ARTICLES)
   );
 
   return {

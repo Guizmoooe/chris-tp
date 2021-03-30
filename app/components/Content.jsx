@@ -1,2 +1,5 @@
-<h1>Content !</h1>;
-<h2>Ok !</h2>;
+const Content = ({ children }) => {
+  return <div>{children}</div>;
+};
+
+export default Content;

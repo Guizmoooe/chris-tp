@@ -1,22 +1,63 @@
 @import "~antd/dist/antd.css";
 
-.site-layout-content {
-  min-height: 280px;
-  padding: 24px;
-  background: #fff;
-}
-#components-layout-demo-top .logo {
-  float: left;
-  width: 120px;
-  height: 31px;
-  margin: 16px 24px 16px 0;
-  background: rgba(255, 255, 255, 0.3);
-}
-.ant-row-rtl #components-layout-demo-top .logo {
-  float: right;
-  margin: 16px 0 16px 24px;
-}
-.navbar {
+nav {
+  height: 10em;
+  background-color: yellow;
   display: flex;
-  justify-content: flex-end;
+  align-items: bottom;
+  justify-content: space-between;
 }
+
+#menu {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+
+.logo-nav {
+  transform: rotateY(180deg);
+}
+
+h1 {
+  font-size: 3em;
+  color: red;
+  margin-top: 25%;
+  margin-left: 20px;
+}
+#presentation {
+  width: 65%;
+  margin: 2rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.button-home {
+  width: 25%;
+  margin-right: 20px;
+  padding: 0.5rem;
+  background: rgb(197, 197, 126);
+}
+.button-home :hover {
+  cursor: pointer;
+  background: black;
+  width: 25%;
+}
+#menu-category {
+  float: right;
+}
+#menu-category li {
+  display: inline;
+  font-size: 1.2em;
+  text-align: left;
+  text-transform: uppercase;
+  margin: 0 0 0 0;
+  line-height: 150px;
+  padding: 0 10px;
+}
+
+/* .ant-carousel {
+  margin-top: 10px;
+  background: grey;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+} */
