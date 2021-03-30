@@ -1,8 +1,11 @@
-import { Card, Button, Image } from "antd";
+import { Card, Button } from "antd";
+import Image from "next/image";
 import PropTypes from "prop-types";
 import Link from "next/link";
+import { useAppContext } from "../lib/deviceContext";
 const { Meta } = Card;
-const CardArticle = ({ articles, currentDevice }) => {
+const CardArticle = ({ articles }) => {
+  const currentDevice = useAppContext();
   return (
     <div
       style={{
@@ -45,9 +48,9 @@ const CardArticle = ({ articles, currentDevice }) => {
                 description={`${description.slice(0, 100)}...`}
                 style={{ marginBottom: "1rem", maxHeight: "50px" }}
               />
-              <Button type="primary" href="http://google.com" target="_blank">
-                Découvrir
-              </Button>
+              <Link href={`/articles/${title}`}>
+                <Button type="danger">Découvrir</Button>
+              </Link>
             </div>
           </Card>
         ) : (

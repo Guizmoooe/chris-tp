@@ -3,29 +3,23 @@ import Link from "next/link";
 import { Burger } from "./Burger";
 import { Logo } from "./Logo";
 import { useMediaQuery } from "react-responsive";
-
+import { useAppContext } from "../lib/deviceContext";
 const Navbar = () => {
   const {
     //todo isLoading,
     data: { data: { allCategories = [] } = {} } = {},
     //todo error,
   } = useCategories();
-
-  const isDesktopOrLaptop = useMediaQuery({
-    query: "(min-device-width: 1224px)",
-  });
-  const isTabletOrMobileDevice = useMediaQuery({
-    query: "(max-device-width: 1224px)",
-  });
+  const currentDevice = useAppContext();
 
   return (
     <div>
-      {isDesktopOrLaptop && (
+      {currentDevice ? (
         <nav>
           <Logo />
           <ul id="menu-category">
             {allCategories.map((category) => (
-              <li>
+              <li key={category.name}>
                 <Link href={`/${category.name}`}>
                   <a>{category.name}</a>
                 </Link>
@@ -33,8 +27,7 @@ const Navbar = () => {
             ))}
           </ul>
         </nav>
-      )}
-      {isTabletOrMobileDevice && (
+      ) : (
         <nav>
           <Logo />
           <Burger categories={allCategories} />

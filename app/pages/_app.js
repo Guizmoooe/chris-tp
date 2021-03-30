@@ -3,10 +3,10 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import Head from "next/head";
 import "../styles.css";
 import MainLayout from "../Layout/MainLayout";
+import { AppWrapper } from "../lib/deviceContext";
 
 const MyApp = ({ Component, pageProps }) => {
   const queryClient = new QueryClient();
-
   return (
     <>
       <Head>
@@ -14,9 +14,11 @@ const MyApp = ({ Component, pageProps }) => {
         <title>Chris TP</title>
       </Head>
       <QueryClientProvider client={queryClient}>
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
+        <AppWrapper>
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
+        </AppWrapper>
         <ReactQueryDevtools position="bottom-right" containerElement="div" />
       </QueryClientProvider>
     </>
