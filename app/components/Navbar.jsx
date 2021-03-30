@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useCategories } from "../lib/api";
 import Link from "next/link";
 import { Burger } from "./Burger";
@@ -7,9 +6,9 @@ import { useMediaQuery } from "react-responsive";
 
 const Navbar = () => {
   const {
-    isLoading,
+    //todo isLoading,
     data: { data: { allCategories = [] } = {} } = {},
-    error,
+    //todo error,
   } = useCategories();
 
   const isDesktopOrLaptop = useMediaQuery({
@@ -20,7 +19,7 @@ const Navbar = () => {
   });
 
   return (
-    <>
+    <div>
       {isDesktopOrLaptop && (
         <nav>
           <Logo />
@@ -41,7 +40,7 @@ const Navbar = () => {
           <Burger categories={allCategories} />
         </nav>
       )}
-    </>
+    </div>
   );
 };
 

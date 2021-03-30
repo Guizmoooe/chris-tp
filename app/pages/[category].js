@@ -5,10 +5,11 @@ const Category = () => {
   const router = useRouter();
   const { category } = router.query;
   const {
-    isLoading,
+    // todo isLoading,
     data: { data: { allArticles = [] } = {} } = {},
-    error,
+    // todo error,
   } = useArticles();
+
   return <CardArticle articles={allArticles} />;
 };
 

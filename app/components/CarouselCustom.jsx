@@ -1,4 +1,5 @@
 import { Carousel } from "antd";
+import PropTypes from "prop-types";
 
 const contentStyle = {
   height: "400px",
@@ -26,6 +27,10 @@ const CarouselCustom = ({ allImages }) => {
       ))}
     </Carousel>
   );
+};
+
+CarouselCustom.proptypes = {
+  allImages: PropTypes.array,
 };
 
 export default CarouselCustom;

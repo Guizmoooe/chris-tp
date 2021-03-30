@@ -1,4 +1,6 @@
 import { Card, Button, Image } from "antd";
+import PropTypes from "prop-types";
+import Link from "next/link";
 const { Meta } = Card;
 const CardArticle = ({ articles, currentDevice }) => {
   return (
@@ -11,6 +13,7 @@ const CardArticle = ({ articles, currentDevice }) => {
       }}
     >
       {articles.map(({ id, title, description, main_image }) => {
+        // If currentDevice is Desktop or Laptop device
         return currentDevice ? (
           <Card
             key={id}
@@ -31,9 +34,7 @@ const CardArticle = ({ articles, currentDevice }) => {
             />
             <div
               style={{
-                // position: "absolute",
                 bottom: "-10px",
-                // padding: "inherit",
               }}
             >
               <Meta
@@ -50,6 +51,7 @@ const CardArticle = ({ articles, currentDevice }) => {
             </div>
           </Card>
         ) : (
+          // If currentDevice is Tablet or Mobile device
           <Card
             key={id}
             hoverable
@@ -59,8 +61,6 @@ const CardArticle = ({ articles, currentDevice }) => {
               minHeight: "350px",
               background: "grey",
               textAlign: "center",
-              // margin: "auto",
-              // margin: "2rem 2rem",
             }}
           >
             <Image
@@ -70,9 +70,7 @@ const CardArticle = ({ articles, currentDevice }) => {
             />
             <div
               style={{
-                position: "absolute",
                 bottom: "-10px",
-                padding: "inherit",
                 left: "20%",
               }}
             >
@@ -81,12 +79,12 @@ const CardArticle = ({ articles, currentDevice }) => {
                 style={{ marginBottom: "1.5rem", fontSize: "1.2rem" }}
               />
               <Meta
-                description={`${description}`}
-                style={{ marginBottom: "1rem" }}
+                description={`${description.slice(0, 100)}...`}
+                style={{ marginBottom: "1.5rem", maxHeight: "50px" }}
               />
-              <Button type="primary" href="http://google.com" target="_blank">
-                Voir {title}
-              </Button>
+              <Link href={`/articles/${title}`}>
+                <Button type="primary">Découvrir</Button>
+              </Link>
             </div>
           </Card>
         );
@@ -94,4 +92,10 @@ const CardArticle = ({ articles, currentDevice }) => {
     </div>
   );
 };
+
+CardArticle.propTypes = {
+  articles: PropTypes.array,
+  currentDevice: PropTypes.bool,
+};
+
 export default CardArticle;

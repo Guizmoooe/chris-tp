@@ -1,17 +1,11 @@
-# KeystoneJS Starter Template
+# **Projet Chris TP**
 
-You've created a KeystoneJS project! This project contains a simple list of users and an admin application (`localhost:3000/admin`) with basic authentication.
+**Contexte :**
 
-## Running the Project.
+Site vitrine pour un artisan qui veut montrer ses réalisations. Il veut un CMS pour ajouter ses réalisations lui-même quand il le souhaite. Il n&#39;y a pas de charte graphique spécifique.
 
-To run this project first run `npm install`. Note: If you generated this project via the Keystone cli step this has been done for you \\o/.
+**Technos utilisés :**
 
-Once running, the Keystone Admin UI is reachable via `localhost:3000/admin`.
-
-## Next steps
-
-This example has no front-end application but you can build your own using the GraphQL API (`http://localhost:3000/admin/graphiql`).
-
-<!--- //TODO
-Change burger menu with the real icon and text
-Change Navbar -->
+- Pour la partie CMS KeystoneJS ( HeadLess CMS ) avec GraphQL.
+- Pour la partie front Next.js pour avoir un site statique avec react-query + requêtes en GraphQL pour les appels API.
+- Pour la partie stockage MongoDB avec un cluster Atlas.

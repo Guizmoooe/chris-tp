@@ -1,7 +1,5 @@
 import Navbar from "../components/Navbar";
-import { Burger } from "../components/Burger";
-import MediaQuery from "react-responsive";
-import Content from "../components/Content";
+import PropTypes from "prop-types";
 const MainLayout = ({ children }) => {
   return (
     <>
@@ -10,5 +8,7 @@ const MainLayout = ({ children }) => {
     </>
   );
 };
-
+MainLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 export default MainLayout;

@@ -1,16 +1,13 @@
-import React from "react";
 import { useMediaQuery } from "react-responsive";
 import { useArticles } from "../lib/api";
-import CarouselCustom from "../components/CarouselCustom";
 import CardArticle from "../components/CardArticle";
-import { Burger } from "../components/Burger";
 import Link from "next/link";
 
 const Home = () => {
   const {
-    isLoading,
+    // todo isLoading,
     data: { data: { allArticles = [] } = {} } = {},
-    error,
+    // todo error,
   } = useArticles();
 
   const presentation = {
