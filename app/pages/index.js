@@ -1,4 +1,4 @@
-import { useArticles } from "../lib/api";
+import { useHomeArticles } from "../lib/api";
 import CardArticle from "../components/CardArticle";
 import Link from "next/link";
 
@@ -7,11 +7,11 @@ const Home = () => {
     // todo isLoading,
     data: { data: { allArticles = [] } = {} } = {},
     // todo error,
-  } = useArticles();
+  } = useHomeArticles();
 
   const presentation = {
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "At chris tp, we believe we know how to recontextualize globally. Think real-time, global. Is it more important for something to be best-of-breed or to be short-term? What do we transition? Anything and everything, regardless of abstruseness! Your budget for extending should be at least three times your budget for actualizing. The capacity to unleash compellingly leads to the capability to engineer intuitively. Think C2C2B, wireless. Without meticulously-planned partnerships, portals are forced to become clicks-and-mortar. Quick: do you have a frictionless strategy for dealing with emerging initiatives? What do we recontextualize? Anything and everything, regardless of semidarkness!",
   };
   // const isDesktopOrLaptop = useMediaQuery({
   //   query: "(min-device-width: 1024px)",

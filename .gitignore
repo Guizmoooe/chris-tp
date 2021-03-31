@@ -3,3 +3,4 @@
 /app/.next
 dist
 yarn.lock
+/app/public/uploads

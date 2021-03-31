@@ -6,6 +6,9 @@ import { useAppContext } from "../lib/deviceContext";
 const { Meta } = Card;
 const CardArticle = ({ articles }) => {
   const currentDevice = useAppContext();
+  const truncate = (str, nb_words) => {
+    return str.split(" ").splice(0, nb_words).join(" ");
+  };
   return (
     <div
       style={{
@@ -42,11 +45,11 @@ const CardArticle = ({ articles }) => {
             >
               <Meta
                 title={`${title}`}
-                style={{ marginBottom: "1.5rem", fontSize: "1.2rem" }}
+                style={{ marginBottom: "1.2rem", fontSize: "1.2rem" }}
               />
               <Meta
-                description={`${description.slice(0, 100)}...`}
-                style={{ marginBottom: "1rem", maxHeight: "50px" }}
+                description={`${truncate(description, 25)}...`}
+                style={{ marginBottom: "2.2rem", maxHeight: "50px" }}
               />
               <Link href={`/articles/${title}`}>
                 <Button type="danger">Découvrir</Button>

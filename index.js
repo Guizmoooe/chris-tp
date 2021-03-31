@@ -9,6 +9,7 @@ const {
   Relationship,
 } = require("@keystonejs/fields");
 const { LocalFileAdapter } = require("@keystonejs/file-adapters");
+const { atTracking } = require("@keystonejs/list-plugins");
 const { GraphQLApp } = require("@keystonejs/app-graphql");
 const { AdminUIApp } = require("@keystonejs/app-admin-ui");
 const { NextApp } = require("@keystonejs/app-next");
@@ -60,7 +61,7 @@ const access = { userIsAdmin, userOwnsItem, userIsAdminOrOwner };
 // File adapter configurations
 const fileAdapter = new LocalFileAdapter({
   src: `${dev ? "" : `${distDir}/`}${staticPath}/uploads`,
-  path: `app/public/uploads`,
+  path: `/uploads`,
 });
 
 keystone.createList("User", {
@@ -141,7 +142,9 @@ keystone.createList("Article", {
         },
       },
     },
+    category: { type: Relationship, ref: "Category", many: true },
   },
+  plugins: [atTracking()],
   hooks: {
     afterDelete: ({ existingItem }) => {
       if (existingItem.image) {
@@ -194,7 +197,7 @@ module.exports = {
   apps: [
     new GraphQLApp(),
     adminApp,
-    new StaticApp({ path: "app/public", src: "app/public" }),
+    new StaticApp({ path: "app", src: "app" }),
     new NextApp({ dir: "app" }),
   ],
   distDir,

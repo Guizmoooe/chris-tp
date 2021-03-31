@@ -14,34 +14,28 @@ const graphql = (query, variables = {}) =>
     return result.json();
   });
 
-const GET_CATEGORIES = `
+const GET_CATEGORIES_HOME = `
   query{
       allCategories {
-          id
-          name
-          description
-          image { 
-              filename
-            }
+        name
       }
   }`;
-const GET_ARTICLES = `
+const GET_ARTICLES_HOME = `
   query{
-      allArticles {
-          id
-          title
-          description
-          main_image { 
-              filename
-            }
+    allArticles(sortBy:updatedAt_DESC, first: 3){
+      title
+      description 
+      main_image{ 
+        filename
       }
+    }
   }`;
 
-const fetchStuff = (gqlQuery) => graphql(gqlQuery);
+const fetchStuff = (gqlQuery, name) => graphql(gqlQuery, name);
 
 export const useCategories = () => {
   const { isLoading, data, error } = useQuery("categories", () =>
-    fetchStuff(GET_CATEGORIES)
+    fetchStuff(GET_CATEGORIES_HOME)
   );
 
   return {
@@ -50,9 +44,9 @@ export const useCategories = () => {
     error,
   };
 };
-export const useArticles = () => {
+export const useHomeArticles = () => {
   const { isLoading, data, error } = useQuery("articles", () =>
-    fetchStuff(GET_ARTICLES)
+    fetchStuff(GET_ARTICLES_HOME)
   );
 
   return {
