@@ -57,9 +57,12 @@ export const useHomeArticles = () => {
 };
 
 //TEST
-
+const rootUrl =
+  process.env.NODE_ENV !== "production"
+    ? "http://localhost:3000"
+    : "https://chris-tp-keystone.herokuapp.com/";
 async function fetchAPI(query, { variables } = {}) {
-  const res = await fetch("http://localhost:3000/admin/api", {
+  const res = await fetch(`${rootUrl}/admin/api`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
