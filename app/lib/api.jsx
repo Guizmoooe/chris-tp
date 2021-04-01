@@ -60,7 +60,7 @@ export const useHomeArticles = () => {
 const rootUrl =
   process.env.NODE_ENV !== "production"
     ? "http://localhost:3000"
-    : "https://chris-tp-keystone.herokuapp.com/";
+    : "https://chris-tp-keystone.herokuapp.com";
 async function fetchAPI(query, { variables } = {}) {
   const res = await fetch(`${rootUrl}/admin/api`, {
     method: "POST",
