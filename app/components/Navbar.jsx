@@ -3,14 +3,14 @@ import Link from "next/link";
 import { Burger } from "./Burger";
 import { Logo } from "./Logo";
 import { useMediaQuery } from "react-responsive";
-import { useAppContext } from "../lib/deviceContext";
+import { useDeviceContext } from "../lib/DeviceContext";
 const Navbar = () => {
   const {
     //todo isLoading,
     data: { data: { allCategories = [] } = {} } = {},
     //todo error,
   } = useCategories();
-  const currentDevice = useAppContext();
+  const currentDevice = useDeviceContext();
 
   return (
     <div>

@@ -2,10 +2,10 @@ import { Card, Button } from "antd";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import Link from "next/link";
-import { useAppContext } from "../lib/deviceContext";
+import { useDeviceContext } from "../lib/DeviceContext";
 const { Meta } = Card;
 const CardArticle = ({ articles }) => {
-  const currentDevice = useAppContext();
+  const currentDevice = useDeviceContext();
   const truncate = (str, nb_words) => {
     return str.split(" ").splice(0, nb_words).join(" ");
   };

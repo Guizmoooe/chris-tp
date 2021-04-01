@@ -31,7 +31,7 @@ const GET_ARTICLES_HOME = `
     }
   }`;
 
-const fetchStuff = (gqlQuery, name) => graphql(gqlQuery, name);
+const fetchStuff = (gqlQuery) => graphql(gqlQuery);
 
 export const useCategories = () => {
   const { isLoading, data, error } = useQuery("categories", () =>
@@ -55,3 +55,64 @@ export const useHomeArticles = () => {
     error,
   };
 };
+
+//TEST
+
+async function fetchAPI(query, { variables } = {}) {
+  const res = await fetch("http://localhost:3000/admin/api", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables,
+    }),
+  });
+  const json = await res.json();
+
+  if (json.errors) {
+    // console.log(process.env.NEXT_EXAMPLE_CMS_GCMS_PROJECT_ID)
+    console.error(json.errors);
+    throw new Error("Failed to fetch API");
+  }
+
+  return json.data;
+}
+
+export async function getAllCategories() {
+  const { data: { allCategories = [] } = {} } = await fetchAPI(`
+    {
+      allCategories {
+        name
+      }
+    }
+  `);
+  return allCategories;
+}
+
+export async function getArticlesByCategory(category) {
+  const { allArticles } = await fetchAPI(`
+  {
+    allArticles(where:{category_some:{name:"${category}"}}){
+    title
+    description
+    main_image{
+      filename
+    }}}`);
+
+  return allArticles;
+}
+
+export async function getArticle(article) {
+  const { allArticles } = await fetchAPI(`
+  {
+    allArticles(where:{title:"${article}"}){
+    title
+    description
+    main_image{
+      filename
+    }}}`);
+  console.log({ allArticles });
+  return allArticles;
+}
