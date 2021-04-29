@@ -37,7 +37,6 @@ const CardArticle = ({ articles }) => {
       }}
     >
       {articles.map(({ id, title, description, main_image }) => {
-        console.log({ main_image });
         // If currentDevice is Desktop or Laptop device
         return (
           <Link href={`/articles/${id}`}>

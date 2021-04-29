@@ -1,12 +1,17 @@
+import { useRouter } from "next/router";
+import ErrorPage from "next/error";
 import { getArticles, getArticle, getCategories } from "../../lib/api";
 import Image from "next/image";
 import MainLayout from "../../Layout/MainLayout";
 const Article = ({ article = {}, categories = [] }) => {
   const { title, description, main_image, images } = article;
-  console.log({ images });
   const myLoader = ({ src }) => {
     return `${src}`;
   };
+  const router = useRouter();
+  if (!router.isFallback && !article?.id) {
+    return <ErrorPage statusCode={404} />;
+  }
   return (
     <MainLayout categories={categories}>
       <h2>{title.toUpperCase()}</h2>
@@ -20,19 +25,20 @@ const Article = ({ article = {}, categories = [] }) => {
   );
 };
 
-export async function getStaticProps({ params: { article: id } }) {
+export async function getServerSideProps({ params: { article: id } }) {
   const { article } = await getArticle({ id });
   const { categories } = await getCategories();
+
   return {
     props: { article, categories },
   };
 }
 
-export async function getStaticPaths() {
-  const { articles } = await getArticles();
-  return {
-    paths: articles?.map((article) => `/articles/${article.id}`) || [],
-    fallback: true,
-  };
-}
+// export async function getStaticPaths() {
+//   const { articles } = await getArticles();
+//   return {
+//     paths: articles?.map((article) => `/articles/${article.id}`) || [],
+//     fallback: true,
+//   };
+// }
 export default Article;
