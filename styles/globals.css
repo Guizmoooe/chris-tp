@@ -1,3 +1,4 @@
+@import "~antd/dist/antd.css";
 html,
 body {
   padding: 0;
@@ -9,8 +10,144 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  color: black;
 }
 
 * {
   box-sizing: border-box;
+}
+
+nav {
+  height: 8em;
+  background-color: #edcd1f;
+  display: flex;
+  align-items: bottom;
+  justify-content: space-between;
+}
+#logo {
+  background-color: #1e2d3b;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
+#menu {
+  margin: 0;
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  align-items: center;
+}
+
+.logo-nav {
+  top: 10% !important;
+  transform: rotateY(180deg);
+  min-height: 100%;
+}
+
+#menu h1 {
+  font-size: 3em;
+  color: #edcd1f;
+  margin-top: 10%;
+  margin-left: 20px;
+  margin-bottom: 0;
+}
+
+#menu p {
+  margin-left: 20px;
+  text-align: center;
+  font-size: 2em;
+  color: #edcd1f;
+}
+
+h2 {
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 55px;
+}
+
+#presentation {
+  /* width: 70%; */
+  margin: 2rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.button-home {
+  width: 5rem;
+  margin-right: 20px;
+  padding: 0.5rem;
+  background: rgb(197, 197, 126);
+}
+.button-home :hover {
+  cursor: pointer;
+  background: black;
+  width: 25%;
+}
+#menu-category {
+  float: right;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 5%;
+}
+#menu-category li {
+  display: inline;
+  font-size: 1.5em;
+  font-weight: 500;
+  text-align: left;
+  text-transform: uppercase;
+  margin: 0 0 0 0;
+  line-height: 150px;
+  padding: 0 10px;
+}
+
+/* .ant-carousel {
+  margin-top: 10px;
+  background: grey;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+} */
+#tata {
+  display: none;
+  margin-top: 14rem;
+  margin-bottom: 10%;
+  color: black !important;
+}
+#toto:hover .cardImage {
+  opacity: 0.4;
+}
+.cardImage:focus {
+  opacity: 0.4;
+}
+/* .ant-card-hoverable:hover {
+  opacity: 0.4;
+} */
+.ant-card-hoverable:hover #tata {
+  display: inline-block;
+  justify-content: center;
+  position: relative;
+}
+
+.separation {
+  background-color: #edcd1f;
+  height: 10px;
+  width: 120px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.center {
+  margin: auto;
+  width: 200px;
+}
+
+#apropos {
+  width: 50%;
+  min-height: 600px;
+  background-image: url("https://images.unsplash.com/photo-1580901369227-308f6f40bdeb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80");
+  background-attachment: fixed;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
 }

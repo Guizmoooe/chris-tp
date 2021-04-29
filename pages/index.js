@@ -1,65 +1,49 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import CardArticle from "../components/CardArticle";
+import ContactForm from "../components/ContactForm";
+import MainLayout from "../Layout/MainLayout";
+import { getArticlesHome, getCategories } from "../lib/api";
+import Link from "next/link";
 
-export default function Home() {
+const Home = ({ articles, categories }) => {
+  const presentation = {
+    description:
+      "At chris tp, we believe we know how to recontextualize globally. Think real-time, global. Is it more important for something to be best-of-breed or to be short-term? What do we transition? Anything and everything, regardless of abstruseness! Your budget for extending should be at least three times your budget for actualizing. The capacity to unleash compellingly leads to the capability to engineer intuitively. Think C2C2B, wireless. Without meticulously-planned partnerships, portals are forced to become clicks-and-mortar. Quick: do you have a frictionless strategy for dealing with emerging initiatives? What do we recontextualize? Anything and everything, regardless of semidarkness!",
+  };
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+    <MainLayout categories={categories}>
+      <div style={{ display: "flex", marginLeft: "5%" }}>
+        <div id="presentation" style={{ textAlign: "left", width: "30%" }}>
+          <h2 stytle={{ marginBottom: 0 }}>À PROPOS</h2>
+          <span className="separation left" />
+          <p>{presentation.description}</p>
         </div>
-      </main>
+        <div id="apropos" />
+      </div>
+      <h2 style={{ textAlign: "center" }}>
+        {"Nos dernières réalisations".toUpperCase()}
+      </h2>
+      <span className="separation center" />
+      <CardArticle articles={articles} />
+      {/* TODO <div id="contact" style={{ width: "50%" }}>
+        <Link href="/">
+          <button className="button-home">Devis</button>
+        </Link>
+        <Link href="/">
+          <button className="button-home">Contacter</button>
+        </Link>
+        <ContactForm />
+      </div> */}
+    </MainLayout>
+  );
+};
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+export async function getServerSideProps() {
+  const { articles } = await getArticlesHome();
+  const { categories } = await getCategories();
+
+  return {
+    props: { articles, categories },
+  };
 }
+export default Home;
