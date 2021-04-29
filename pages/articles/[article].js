@@ -31,7 +31,7 @@ export async function getStaticProps({ params: { article: id } }) {
 export async function getStaticPaths() {
   const { articles } = await getArticles();
   return {
-    paths: articles?.map((article) => `/article/${article.id}`) || [],
+    paths: articles?.map((article) => `/articles/${article.id}`) || [],
     fallback: true,
   };
 }
