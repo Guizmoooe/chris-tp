@@ -14,7 +14,7 @@ const Category = ({ categories = [], articles = [], title }) => {
   );
 };
 
-export async function getServerSideProps({ params: { category: id } }) {
+export async function getStaticProps({ params: { category: id } }) {
   const { categories } = await getCategories();
   const { articles } = await getArticlesByCategory({ id });
   const { title } = await getCurrentCategory({ id });

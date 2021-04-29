@@ -38,7 +38,7 @@ const Home = ({ articles, categories }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { articles } = await getArticlesHome();
   const { categories } = await getCategories();
 

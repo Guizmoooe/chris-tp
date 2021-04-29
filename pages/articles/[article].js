@@ -20,7 +20,7 @@ const Article = ({ article = {}, categories = [] }) => {
   );
 };
 
-export async function getServerSideProps({ params: { article: id } }) {
+export async function getStaticProps({ params: { article: id } }) {
   const { article } = await getArticle({ id });
   const { categories } = await getCategories();
   return {
