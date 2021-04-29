@@ -1,4 +1,4 @@
-import { getArticle, getCategories } from "../../lib/api";
+import { getArticles, getArticle, getCategories } from "../../lib/api";
 import Image from "next/image";
 import MainLayout from "../../Layout/MainLayout";
 const Article = ({ article = {}, categories = [] }) => {
@@ -25,6 +25,14 @@ export async function getStaticProps({ params: { article: id } }) {
   const { categories } = await getCategories();
   return {
     props: { article, categories },
+  };
+}
+
+export async function getStaticPaths() {
+  const { articles } = await getArticles();
+  return {
+    paths: articles?.map((article) => `/article/${article.id}`) || [],
+    fallback: true,
   };
 }
 export default Article;

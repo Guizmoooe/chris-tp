@@ -22,4 +22,12 @@ export async function getStaticProps({ params: { category: id } }) {
     props: { categories, articles, title },
   };
 }
+
+export async function getStaticPaths() {
+  const { categories } = await getCategories();
+  return {
+    paths: categories?.map((category) => `/${category.id}`) || [],
+    fallback: true,
+  };
+}
 export default Category;
