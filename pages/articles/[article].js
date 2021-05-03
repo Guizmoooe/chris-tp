@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
-import { getArticles, getArticle, getCategories } from "../../lib/api";
+import { getArticle, getCategories } from "../../lib/api";
 import Image from "next/image";
 import MainLayout from "../../Layout/MainLayout";
+import { Row, Col } from "antd";
 const Article = ({ article = {}, categories = [] }) => {
   const { title, description, main_image, images } = article;
   const myLoader = ({ src }) => {
@@ -14,13 +15,45 @@ const Article = ({ article = {}, categories = [] }) => {
   }
   return (
     <MainLayout categories={categories}>
-      <h2>{title.toUpperCase()}</h2>
-      <span className="separation" />
-      <p>{description}</p>
-      <Image loader={myLoader} width={400} height={275} src={main_image.url} />
-      {images.map((image) => (
-        <Image loader={myLoader} width={400} height={275} src={image.url} />
-      ))}
+      <div style={{ width: "50%", textAlign: "center", margin: "auto" }}>
+        <h2>{title.toUpperCase()}</h2>
+        <span className="separation left" />
+        <p>{description}</p>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+          marginTop: "1rem",
+        }}
+      >
+        {images.map((image) => (
+          <div
+            style={{
+              width: 450,
+              marginBottom: "3.5rem",
+              // marginRight: "2rem",
+              minHeight: "450px",
+              maxHeight: "450px",
+              minWidth: "450px",
+              maxWidth: "450px",
+              textAlign: "center",
+              // backgroundImage: `url(${main_image.url})`,
+              // backgroundRepeat: "no-repeat",
+              // backgroundSize: "contain",
+            }}
+          >
+            <Image
+              loader={myLoader}
+              height={450}
+              width={450}
+              src={image.url}
+              className="cardImage"
+            />
+          </div>
+        ))}
+      </div>
     </MainLayout>
   );
 };

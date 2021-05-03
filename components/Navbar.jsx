@@ -1,9 +1,11 @@
+import React from "react";
 import { getCategories } from "../lib/api";
 import Link from "next/link";
 import { Burger } from "./Burger";
 import { Logo } from "./Logo";
 import { useDeviceContext } from "../lib/DeviceContext";
-const Navbar = ({ categories = [] }) => {
+import PropTypes from "prop-types";
+const Navbar = ({ categories =[] }) => {
   const currentDevice = useDeviceContext();
 
   return (
@@ -31,4 +33,7 @@ const Navbar = ({ categories = [] }) => {
   );
 };
 
+Navbar.propTypes = {
+  categories: PropTypes.array,
+};
 export default Navbar;

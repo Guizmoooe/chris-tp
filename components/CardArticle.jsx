@@ -1,14 +1,13 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { Card, Button } from "antd";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import Link from "next/link";
-import { useDeviceContext } from "../lib/DeviceContext";
+// import { useDeviceContext } from "../lib/DeviceContext";
 const { Meta } = Card;
-import Radium from "radium";
-import { useState, useRef, useEffect } from "react";
 
 const CardArticle = ({ articles }) => {
-  const currentDevice = useDeviceContext();
+  // const currentDevice = useDeviceContext();
   const truncate = (str, nb_words) => {
     return str.split(" ").splice(0, nb_words).join(" ") + "...";
   };
@@ -28,33 +27,26 @@ const CardArticle = ({ articles }) => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        marginTop: "1rem",
-      }}
-    >
+    <div className="cardArticle">
       {articles.map(({ id, title, description, main_image }) => {
         // If currentDevice is Desktop or Laptop device
         return (
-          <Link href={`/articles/${id}`}>
+          <Link href={`/articles/${id}`} key={id}>
             <Card
               key={id}
               hoverable
               style={{
-                width: 450,
+                // width: 450,
                 marginBottom: "3.5rem",
                 // marginRight: "2rem",
                 minHeight: "450px",
                 maxHeight: "450px",
                 minWidth: "450px",
-                maxWidth: "450px",
+                // maxWidth: "450px",
                 textAlign: "center",
                 // backgroundImage: `url(${main_image.url})`,
                 // backgroundRepeat: "no-repeat",
-                // backgroundSize: "contain",
+                // backgroundSize: "contain"
               }}
             >
               <div id="toto">
@@ -72,7 +64,7 @@ const CardArticle = ({ articles }) => {
                     description={truncate(description, 30)}
                     style={{ marginBottom: "1rem" }}
                   />
-                  <Button type="danger">Découvrir</Button>
+                  <Button className="button-discover">Découvrir</Button>
                 </div>
               </div>
             </Card>
@@ -80,6 +72,7 @@ const CardArticle = ({ articles }) => {
         );
 
         // If currentDevice is Tablet or Mobile device
+        // eslint-disable-next-line no-unreachable
         {
           /* <Link href={`/articles/${id}`}>
             <Card

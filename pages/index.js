@@ -1,9 +1,8 @@
+/* eslint-disable react/react-in-jsx-scope */
 import CardArticle from "../components/CardArticle";
-import ContactForm from "../components/ContactForm";
 import MainLayout from "../Layout/MainLayout";
 import { getArticlesHome, getCategories } from "../lib/api";
-import Link from "next/link";
-
+import { PropTypes } from "prop-types";
 const Home = ({ articles, categories }) => {
   const presentation = {
     description:
@@ -46,4 +45,9 @@ export async function getStaticProps() {
     props: { articles, categories },
   };
 }
+
+Home.propTypes = {
+  articles: PropTypes.array,
+  categories: PropTypes.array,
+};
 export default Home;
