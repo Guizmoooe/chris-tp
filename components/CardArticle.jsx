@@ -6,26 +6,14 @@ import Link from "next/link";
 // import { useDeviceContext } from "../lib/DeviceContext";
 const { Meta } = Card;
 
-const CardArticle = ({ articles }) => {
-  // const currentDevice = useDeviceContext();
-  const truncate = (str, nb_words) => {
-    return str.split(" ").splice(0, nb_words).join(" ") + "...";
-  };
-  // const style = {
-  //   width: 450,
-  //   marginBottom: "3.5rem",
-  //   marginRight: "2rem",
-  //   minHeight: "450px",
-  //   maxHeight: "450px",
-  //   minWidth: "450px",
-  //   maxWidth: "450px",
-  //   textAlign: "center",
-  //   backgroundImage: `url${main_image.url}`,
-  // };
-  const myLoader = ({ src }) => {
-    return `${src}`;
-  };
+const truncate = (str, nb_words) => {
+  return str.split(" ").splice(0, nb_words).join(" ") + "...";
+};
+const myLoader = ({ src }) => {
+  return `${src}`;
+};
 
+const CardArticle = ({ articles }) => {
   return (
     <div className="cardArticle">
       {articles.map(({ id, title, description, main_image }) => {
@@ -36,24 +24,18 @@ const CardArticle = ({ articles }) => {
               key={id}
               hoverable
               style={{
-                // width: 450,
                 marginBottom: "3.5rem",
-                // marginRight: "2rem",
-                minHeight: "450px",
-                maxHeight: "450px",
+                height: "380px",
                 minWidth: "450px",
-                // maxWidth: "450px",
+                maxWidth: "450px",
                 textAlign: "center",
-                // backgroundImage: `url(${main_image.url})`,
-                // backgroundRepeat: "no-repeat",
-                // backgroundSize: "contain"
               }}
             >
               <div id="toto">
                 <Image
                   loader={myLoader}
-                  // width={400}
-                  // height={275}
+                  // width={325}
+                  // height={450}
                   layout={"fill"}
                   src={main_image.url}
                   className="cardImage"
@@ -62,7 +44,11 @@ const CardArticle = ({ articles }) => {
                   <Meta
                     title={title}
                     description={truncate(description, 30)}
-                    style={{ marginBottom: "1rem" }}
+                    style={{
+                      marginBottom: "1rem",
+                      position: "relative",
+                      width: "80%",
+                    }}
                   />
                   <Button className="button-discover">Découvrir</Button>
                 </div>

@@ -1,18 +1,17 @@
 import React from "react";
-import { getCategories } from "../lib/api";
 import Link from "next/link";
 import { Burger } from "./Burger";
 import { Logo } from "./Logo";
-import { useDeviceContext } from "../lib/DeviceContext";
+import { useDeviceContext } from "../context/DeviceContext";
 import PropTypes from "prop-types";
-const Navbar = ({ categories =[] }) => {
-  const currentDevice = useDeviceContext();
 
+const Navbar = ({ categories = [] }) => {
+  const currentDevice = useDeviceContext();
   return (
     <div>
       {currentDevice ? (
         <nav>
-          <Logo />
+          <Logo currentDevice={currentDevice} />
           <ul id="menu-category">
             {categories.map((category) => (
               <li key={category.title}>
@@ -24,8 +23,8 @@ const Navbar = ({ categories =[] }) => {
           </ul>
         </nav>
       ) : (
-        <nav>
-          <Logo />
+        <nav style={{ justifyContent: "space-between" }}>
+          <Logo currentDevice={currentDevice} />
           <Burger categories={categories} />
         </nav>
       )}

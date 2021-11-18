@@ -14,6 +14,14 @@ a {
   color: black;
 }
 
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style-type: none;
+}
 * {
   margin: 0;
   padding: 0;
@@ -38,14 +46,35 @@ nav {
   display: flex;
   justify-content: center;
 }
+
+#logo-mobile {
+  background-color: #1e2d3b;
+  min-width: 65%;
+  max-width:85%;
+  height: 100%;
+}
 #menu {
   margin: 0;
   display: flex;
-  list-style-type: none;
   padding: 0;
   align-items: center;
 }
 
+#menu-mobile {
+  display: grid;
+  grid-template-columns: [first] auto [col2] auto [col3] auto;
+  grid-template-rows: [first]40px [line2] 60px;
+  height:100%;
+}
+
+#menu-mobile li h1 {
+  font-size: 2em;
+  color: #edcd1f;
+}
+#menu-mobile li p {
+  font-size: 1.5em;
+  color: #edcd1f;
+}
 .logo-nav {
   top: 10% !important;
   transform: rotateY(180deg);
@@ -128,16 +157,17 @@ h2 {
 } */
 #tata {
   display: none;
-  margin-top: 14rem;
-  margin-bottom: 10%;
+  margin-top: 35%;
   color: black !important;
 }
 #toto:hover .cardImage {
   opacity: 0.4;
 }
-
+#toto {
+  max-width: 100%;
+}
 .cardImage {
-  border-radius: 37px;
+  border-radius: 7px;
 }
 .cardImage:focus {
   opacity: 0.4;
@@ -146,16 +176,17 @@ h2 {
   opacity: 0.4;
 } */
 .ant-card-hoverable:hover #tata {
-  display: inline-block;
-  justify-content: center;
-  position: relative;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 410px;
 }
 
 .separation {
   background-color: #edcd1f;
   height: 10px;
   width: 120px;
-  margin-bottom: 20px !important;
+  margin-bottom: 40px !important;
   display: block;
 }
 
@@ -166,8 +197,7 @@ h2 {
 
 .ant-card-bordered {
   border: 1px solid #edcd1f !important;
-  border-radius: 40px !important;
-  box-shadow: -8px -5px 7px 2px #1e2d3b;
+  border-radius: 10px !important;
 }
 .left {
   width: 200px;
@@ -186,22 +216,25 @@ h2 {
 footer {
   padding: 25px;
   background-color: #1e2d3b;
-  color: white;
+  color: #edcd1f;
   width: 100%;
   text-align: center;
   bottom: 0;
   margin-top: 10px;
 }
 
+footer > a {
+  color: white;
+}
+
 .cardArticle {
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-  /* margin-top: 1rem; */
-  /* justify-content: space-around; */
-  display: grid;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  /* display: grid;
   grid-column-gap: 84px;
   grid-row-gap: 15px;
-  grid-template-columns: repeat(auto-fill, 500px);
+  grid-template-columns: repeat(auto-fill, 500px); */
   width: 90%;
   margin: auto;
 }
