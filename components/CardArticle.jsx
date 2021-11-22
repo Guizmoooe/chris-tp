@@ -25,13 +25,13 @@ const CardArticle = ({ articles }) => {
               hoverable
               style={{
                 marginBottom: "3.5rem",
-                height: "380px",
-                minWidth: "450px",
-                maxWidth: "450px",
+                minHeight:"350px",
+                maxHeight:"350px",
+                minWidth: "33%",
+                maxWidth: "33%",
                 textAlign: "center",
               }}
             >
-              <div id="toto">
                 <Image
                   loader={myLoader}
                   // width={325}
@@ -40,6 +40,8 @@ const CardArticle = ({ articles }) => {
                   src={main_image.url}
                   className="cardImage"
                 />
+              <div id="toto">
+                </div>
                 <div id="tata">
                   <Meta
                     title={title}
@@ -51,10 +53,10 @@ const CardArticle = ({ articles }) => {
                     }}
                   />
                   <Button className="button-discover">Découvrir</Button>
-                </div>
               </div>
             </Card>
           </Link>
+          
         );
 
         // If currentDevice is Tablet or Mobile device

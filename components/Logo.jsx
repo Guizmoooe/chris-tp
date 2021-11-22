@@ -17,7 +17,6 @@ export const Logo = ({ currentDevice }) => {
             </li>
             <li>
               <h1>Chris TP</h1>
-              <p>06.72.72.72.72</p>
             </li>
           </ul>
         </a>

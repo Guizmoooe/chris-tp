@@ -27,11 +27,11 @@ export async function getServerSideProps({ params: { category: id } }) {
   };
 }
 
-export async function getStaticPaths() {
-  const { categories } = await getCategories();
-  return {
-    paths: categories?.map((category) => `/${category.id}`) || [],
-    fallback: true,
-  };
-}
+// export async function getStaticPaths() {
+//   const { categories } = await getCategories();
+//   return {
+//     paths: categories?.map((category) => `/${category.id}`) || [],
+//     fallback: true,
+//   };
+// }
 export default Category;
