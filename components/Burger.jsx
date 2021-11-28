@@ -23,6 +23,11 @@ export const Burger = ({ categories = [] }) => {
           </Link>
         </Menu.Item>
       ))}
+      <Menu.Item key={"contact"}>
+          <Link href={`/contact`}>
+            <a>Contact</a>
+          </Link>
+        </Menu.Item>
     </Menu>
   );
 

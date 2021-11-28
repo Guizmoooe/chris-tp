@@ -6,7 +6,9 @@ const MainLayout = ({ children, categories }) => {
   return (
     <>
       <Navbar categories={categories} />
+      <div className="wrapper">
       {children}
+      </div>
       <Footer />
     </>
   );

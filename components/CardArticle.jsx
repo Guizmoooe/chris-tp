@@ -3,7 +3,7 @@ import { Card, Button } from "antd";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import Link from "next/link";
-// import { useDeviceContext } from "../lib/DeviceContext";
+import { useDeviceContext } from "../context/DeviceContext";
 const { Meta } = Card;
 
 const truncate = (str, nb_words) => {
@@ -12,81 +12,90 @@ const truncate = (str, nb_words) => {
 const myLoader = ({ src }) => {
   return `${src}`;
 };
-
 const CardArticle = ({ articles }) => {
+  const currentDevice = useDeviceContext();
+  console.log("currentDevice", currentDevice);
   return (
     <div className="cardArticle">
-      {articles.map(({ id, title, description, main_image }) => {
+      {articles.map(({ id, title, description, main_image }) => (
         // If currentDevice is Desktop or Laptop device
-        return (
+        currentDevice ? (
           <Link href={`/articles/${id}`} key={id}>
             <Card
               key={id}
               hoverable
               style={{
                 marginBottom: "3.5rem",
-                minHeight:"350px",
-                maxHeight:"350px",
+                minHeight: "350px",
+                maxHeight: "350px",
                 minWidth: "33%",
                 maxWidth: "33%",
                 textAlign: "center",
               }}
             >
-                <Image
-                  loader={myLoader}
-                  // width={325}
-                  // height={450}
-                  layout={"fill"}
-                  src={main_image.url}
-                  className="cardImage"
+              <Image
+                loader={myLoader}
+                // width={325}
+                // height={450}
+                layout={"fill"}
+                src={main_image.url}
+                className="cardImage"
+              />
+              <div id="toto"></div>
+              <div id="tata">
+                <Meta
+                  title={title}
+                  description={truncate(description, 25)}
+                  style={{
+                    marginBottom: "1rem",
+                    position: "relative",
+                    width: "80%",
+                  }}
                 />
-              <div id="toto">
-                </div>
-                <div id="tata">
-                  <Meta
-                    title={title}
-                    description={truncate(description, 30)}
-                    style={{
-                      marginBottom: "1rem",
-                      position: "relative",
-                      width: "80%",
-                    }}
-                  />
-                  <Button className="button-discover">Découvrir</Button>
+                <Button className="button-discover">Découvrir</Button>
               </div>
             </Card>
           </Link>
-          
-        );
+        ) : (
+          // If currentDevice is Tablet or Mobile device
 
-        // If currentDevice is Tablet or Mobile device
-        // eslint-disable-next-line no-unreachable
-        {
-          /* <Link href={`/articles/${id}`}>
+          <Link href={`/articles/${id}`}>
             <Card
               key={id}
               hoverable
               style={{
-                width: 350,
-                marginBottom: "1.5rem",
+                marginBottom: "3.5rem",
                 minHeight: "350px",
-                background: "grey",
+                maxHeight: "350px",
+                minWidth: "90%",
                 textAlign: "center",
               }}
             >
-              <Image
+               <Image
                 loader={myLoader}
-                // width={250}
-                // height={175}
+                // width={325}
+                // height={450}
                 layout={"fill"}
                 src={main_image.url}
-                // style={{ objectFit: "fill" }}
+                className="cardImage"
               />
-              <Button type="primary">Découvrir</Button>
+              <div id="toto"></div>
+              <div id="tata">
+                <Meta
+                  title={title}
+                  description={truncate(description, 25)}
+                  style={{
+                    marginBottom: "1rem",
+                    position: "relative",
+                    width: "80%",
+                  }}
+                />
+                <Button className="button-discover">Découvrir</Button>
+              </div>
             </Card>
-          </Link> */
-        }
-      })}
+          </Link>
+        )
+      ))}
     </div>
   );
 };

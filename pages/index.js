@@ -45,8 +45,8 @@ const Home = ({ articles, categories }) => {
               id="presentation"
               style={{ textAlign: "center", width: "70%" }}
             >
-              <h3 stytle={{ marginBottom: 0 }}>À PROPOS</h3>
-              <span className="separation left" />
+              <h3 stytle={{ marginBottom: 0, fontSize: "2rem" }}>À PROPOS</h3>
+              <span className="separation" />
               <p>{presentation.description}</p>
             </div>
             {currentDevice && <div id="apropos" />}
@@ -55,7 +55,7 @@ const Home = ({ articles, categories }) => {
             {"Nos dernières réalisations".toUpperCase()}
           </h3>
           <span className="separation center" />
-          <CardArticle articles={articles} />
+          <CardArticle articles={articles} currentDevice={currentDevice} />
         </MainLayout>
       )}
     </>

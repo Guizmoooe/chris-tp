@@ -3,8 +3,10 @@ import ErrorPage from "next/error";
 import { getArticle, getCategories } from "../../lib/api";
 import Image from "next/image";
 import MainLayout from "../../Layout/MainLayout";
-import { Row, Col } from "antd";
+import { useDeviceContext } from "../../context/DeviceContext";
+import { Card } from "antd";
 const Article = ({ article = {}, categories = [] }) => {
+  const currentDevice = useDeviceContext();
   const { title, description, main_image, images } = article;
   const myLoader = ({ src }) => {
     return `${src}`;
@@ -13,7 +15,7 @@ const Article = ({ article = {}, categories = [] }) => {
   if (!router.isFallback && !article?.id) {
     return <ErrorPage statusCode={404} />;
   }
-  return (
+  return currentDevice ? (
     <MainLayout categories={categories}>
       <div style={{ width: "50%", textAlign: "center", margin: "auto" }}>
         <h2>{title.toUpperCase()}</h2>
@@ -52,6 +54,44 @@ const Article = ({ article = {}, categories = [] }) => {
               className="cardImage"
             />
           </div>
+        ))}
+      </div>
+    </MainLayout>
+  ) : (
+    <MainLayout categories={categories}>
+      <div style={{ width: "80%", textAlign: "center", margin: "auto" }}>
+        <h2 style={{ fontSize: "x-large" }}>{title.toUpperCase()}</h2>
+        <span className="separation" />
+        <p>{description}</p>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+          marginTop: "1rem",
+        }}
+      >
+        {images.map((image) => (
+          <Card
+            key={image.url}
+            style={{
+              marginBottom: "3.5rem",
+              minHeight: "350px",
+              maxHeight: "350px",
+              minWidth: "90%",
+              textAlign: "center",
+            }}
+          >
+            <Image
+              loader={myLoader}
+              // width={325}
+              // height={450}
+              layout={"fill"}
+              src={image.url}
+              className="cardImage"
+            />
+          </Card>
         ))}
       </div>
     </MainLayout>

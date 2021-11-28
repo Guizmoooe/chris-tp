@@ -7,6 +7,14 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   height: 100%;
 }
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -50px;
+}
+.wrapper::after {
+  content: "";
+  display: block;
+}
 
 a {
   color: inherit;
@@ -195,7 +203,10 @@ h2 {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  width: 87%;
+  width: 70%;
+  margin: auto;
+  position: inherit;
+  margin-top: 25%;
 }
 
 .separation {
@@ -229,7 +240,12 @@ h2 {
   background-size: contain;
 }
 
+footer, .wrapper::after {
+  height: 50px;
+}
+
 footer {
+  position: fixed;
   padding: 25px;
   background-color: #1e2d3b;
   color: #edcd1f;
@@ -252,5 +268,7 @@ footer > a {
   grid-row-gap: 15px;
   grid-template-columns: repeat(auto-fill, 500px); */
   width: 90%;
+  min-width: 80%;
+  max-width: 95%;
   margin: auto;
 }
