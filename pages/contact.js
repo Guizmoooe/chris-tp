@@ -4,11 +4,8 @@ import { Form, Input, Button } from "antd";
 import { sendContactForm } from "../lib/api";
 import { useState } from "react";
 const layout = {
-  labelCol: {
-    span: 4,
-  },
   wrapperCol: {
-    span: 6,
+    span: 15,
   },
 };
 /* eslint-disable no-template-curly-in-string */
@@ -24,21 +21,22 @@ const validateMessages = {
 const Contact = ({ categories = [] }) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  
-  const onFinish = async(values) => {
+  const [error, setError] = useState(false);
+  const onFinish = async (values) => {
     setLoading(true);
     const test = await sendContactForm(values);
-    if(test.message === "ok") {
+    if (test.message === "ok") {
       setLoading(false);
       setSuccess(true);
-    }else{
+    } else {
       onFinishFailed();
-      setSuccess(false);
+      setLoading(false);
+      setError(true);
     }
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
-  }
+  };
   return (
     <MainLayout categories={categories}>
       <div
@@ -62,20 +60,35 @@ const Contact = ({ categories = [] }) => {
           <p>8h30-17h30</p>
         </div>
       </div>
-        {success ? <div>Votre message a bien été envoyé</div> : <div>Erreur veuillez réessayer plus tard</div>}
+      {success ? (
+        <div>Votre message a bien été envoyé</div> ? (
+          error
+        ) : (
+          <div>Erreur veuillez réessayer plus tard</div>
+        )
+      ) : (
+        ""
+      )}
       <Form
         {...layout}
+        layout="vertical"
         name="nest-messages"
         onFinish={onFinish}
         validateMessages={validateMessages}
-        style={{border: `1px solid ${success ? 'green' : 'red'}`, width: '50%', margin: 'auto', padding: '50px 0'}}
+        style={{
+          
+          border: `${success ? "1px solid green" ? error : "1px solid red" : ""}`,
+          width: "50%",
+          margin: "30px auto",
+          
+        }}
       >
         <Form.Item
           name={["user", "name"]}
           label="Name"
           rules={[
             {
-              // required: true,
+              required: true,
             },
           ]}
         >
@@ -87,7 +100,7 @@ const Contact = ({ categories = [] }) => {
           rules={[
             {
               type: "email",
-              // required: true,
+              required: true,
             },
           ]}
         >
@@ -98,7 +111,7 @@ const Contact = ({ categories = [] }) => {
           label="Phone Number"
           rules={[
             {
-              // required: true,
+              required: true,
               message: "Please input your phone number!",
             },
           ]}
@@ -110,7 +123,7 @@ const Contact = ({ categories = [] }) => {
           label="City"
           rules={[
             {
-              // required: true,
+              required: true,
             },
           ]}
         >
@@ -121,11 +134,11 @@ const Contact = ({ categories = [] }) => {
           label="Votre projet"
           rules={[
             {
-              //  required: true
+              required: true,
             },
           ]}
         >
-          <Input.TextArea />
+          <Input.TextArea rows={6} />
         </Form.Item>
         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 4 }}>
           <Button
